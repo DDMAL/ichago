@@ -1,5 +1,6 @@
 %%% 
 %Modified version for Ichiro Fujinaga by Adam Tindale 2003
+%Modified version by Finn Upham and Mark Zadel 2011 to add webpages
 %Original information left intact.
 %
 %====================================================================
@@ -181,6 +182,7 @@ ENTRY
     volume
     year
     url
+    lastchecked %% added by Finn
   }
   {}
   { label.year extra.label sort.year sort.label }
@@ -1032,15 +1034,25 @@ FUNCTION {calc.label}
   'label.year :=
 }
 %======================================
-FUNCTION {url.output}
-{ url empty$
+FUNCTION {format.lastchecked}
+{ lastchecked empty$
 	{""}
-	{ url * }
+	{ "Last accessed " lastchecked * }
   if$
 }
+
+
+FUNCTION {format.url}
+{
+  url empty$
+    {""}
+    { "\url{" url * "}" * }
+  if$
+}
+
 %======================================
-%Adam Tindale 2003
-% added url.output function
+%Finn Upham / Mark Zadel 2011
+% added format.lastchecked, format.url functions
 
 FUNCTION {output.bibitem}
 { newline$
@@ -1395,6 +1407,30 @@ FUNCTION {unpublished}
 %Adam Tindale 2003
 %added url
 %
+
+FUNCTION {webpage}
+{ output.bibitem
+  format.authors
+  "author" output.check
+  author format.key output
+  output.year.check
+  new.block
+  format.title
+  "title" output.check
+  new.block
+  note "note" output.check
+  new.block
+  format.lastchecked output
+  format.url
+  "url" output.check
+  fin.entry
+  format.annotation write$
+}
+
+%Finn 2011
+%added webpage
+%Mark 2011 
+%fixed webpage
 
 FUNCTION {default.type} { misc }
 
