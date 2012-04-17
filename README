@@ -8,3 +8,18 @@ This style closely follows the citation format described in the
 Chicago Manual of Style, 15th edition.
 
 Many authors over the years. See the files themselves for notes.
+
+To use, include the ichago package:
+  \usepackage{ichago}
+then set the ichago bibliography style with
+  \bibliographystyle{ichago}
+
+The following citation commands are available:
+  \cite{key}        - (Authors, year)
+  \citeN{key}       - Authors (year)
+  \citeA{key}       - (Authors)
+  \citeNP, \citeANP - Above, with no parentheses
+  To shorten author lists with et al., use
+  \shortcite variations
+  \citeyear{key}     - Year in parentheses
+  \citeyearNP{key}   - Year with no parenthesis
