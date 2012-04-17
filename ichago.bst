@@ -739,7 +739,7 @@ FUNCTION {format.jour.vol}
     { volume empty$
        { "no number and no volume in " cite$ * warning$
          "" * }
-       { "~{\em " * Volume * "}" * }
+       { "~{" * Volume * "}" * }
       if$
     }
     { volume empty$
